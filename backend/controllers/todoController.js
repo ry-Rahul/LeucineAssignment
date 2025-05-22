@@ -124,7 +124,7 @@ const summarizeTodo = async (req, res) => {
 
     const prompt = `Here is a list of pending to-dos:\n\n${allNotDoneTodos.join(
       "\n"
-    )}\n\nPlease generate a concise summary of the tasks. Group similar items, remove redundancy, and keep it under 3-4 sentences. Format the summary in a clear and actionable way.`;
+    )}\n\nPlease generate a concise summary of the tasks  and use emoji it it , Group similar items, remove redundancy, and keep it under 3-4 sentences. Format the summary in a clear and actionable way.`;
 
     let summary = "No summary generated.";
     try {
@@ -139,12 +139,10 @@ const summarizeTodo = async (req, res) => {
     }
 
     try {
-      await axios.post(
-        "https://hooks.slack.com/services/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",
-        {
-          text: summary,
-        }
-      );
+      const webhookURL = process.env.VITE_SLACK_WEBHOOK_URL;
+      await axios.post(webhookURL, {
+        text: summary,
+      });
     } catch (slackError) {
       console.error("Error posting summary to Slack:", slackError);
     }
