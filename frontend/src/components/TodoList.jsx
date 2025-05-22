@@ -42,10 +42,10 @@ export default function TodoList({ todos, onEdit, onDelete, onToggle }) {
                 className="mr-3 text-purple-500 hover:text-purple-700 focus:outline-none"
                 onClick={() => onToggle(idx)}
                 aria-label={
-                  todo.completed ? "Mark as incomplete" : "Mark as complete"
+                  todo.is_done ? "Mark as incomplete" : "Mark as complete"
                 }
               >
-                {todo.completed ? (
+                {todo.is_done ? (
                   <FiCheckCircle size={22} />
                 ) : (
                   <FiCircle size={22} />
@@ -53,7 +53,7 @@ export default function TodoList({ todos, onEdit, onDelete, onToggle }) {
               </button>
               <span
                 className={`flex-1 text-gray-800 text-base ${
-                  todo.completed ? "line-through text-gray-400" : ""
+                  todo.is_done ? "line-through text-gray-400" : ""
                 }`}
               >
                 {todo.text}
@@ -68,7 +68,7 @@ export default function TodoList({ todos, onEdit, onDelete, onToggle }) {
                 </button>
                 <button
                   className="text-red-500 hover:bg-red-100 rounded p-1"
-                  onClick={() => onDelete(idx)}
+                  onClick={() => onDelete(todo.id)}
                   aria-label="Delete Todo"
                 >
                   <FiTrash2 size={18} />
