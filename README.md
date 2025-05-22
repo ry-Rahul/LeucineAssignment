@@ -133,8 +133,3 @@ VITE_SLACK_WEBHOOK_URL=your_slack_webhook_url
 - **Security:** Never commit your API keys or Slack webhook URLs to public repositories.
 - **Customization:** You can easily extend this project to support more integrations or AI models.
 
----
-
-## License
-
-MIT
